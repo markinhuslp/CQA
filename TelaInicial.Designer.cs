@@ -30,13 +30,13 @@
         {
             dataGridView1 = new DataGridView();
             dataGridView2 = new DataGridView();
-            tableLayoutPanel1 = new TableLayoutPanel();
+            tlpCentral = new TableLayoutPanel();
             panel1 = new Panel();
-            lblTotalReceber = new Label();
             btnRecalcular = new Button();
+            lblTotalReceber = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
-            tableLayoutPanel1.SuspendLayout();
+            tlpCentral.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -48,7 +48,7 @@
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(3, 37);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(338, 598);
+            dataGridView1.Size = new Size(398, 598);
             dataGridView1.TabIndex = 1;
             // 
             // dataGridView2
@@ -57,32 +57,32 @@
             dataGridView2.AllowUserToDeleteRows = false;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Dock = DockStyle.Fill;
-            dataGridView2.Location = new Point(347, 37);
+            dataGridView2.Location = new Point(407, 37);
             dataGridView2.Name = "dataGridView2";
-            dataGridView2.Size = new Size(1375, 598);
+            dataGridView2.Size = new Size(1315, 598);
             dataGridView2.TabIndex = 2;
             // 
-            // tableLayoutPanel1
+            // tlpCentral
             // 
-            tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 19.942028F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80.05797F));
-            tableLayoutPanel1.Controls.Add(dataGridView2, 1, 1);
-            tableLayoutPanel1.Controls.Add(dataGridView1, 0, 1);
-            tableLayoutPanel1.Controls.Add(panel1, 0, 2);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(0, 0);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 3;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 5.32915354F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 94.670845F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 72F));
-            tableLayoutPanel1.Size = new Size(1725, 711);
-            tableLayoutPanel1.TabIndex = 3;
+            tlpCentral.ColumnCount = 2;
+            tlpCentral.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 23.42029F));
+            tlpCentral.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 76.57971F));
+            tlpCentral.Controls.Add(dataGridView1, 0, 1);
+            tlpCentral.Controls.Add(panel1, 0, 2);
+            tlpCentral.Controls.Add(dataGridView2, 1, 1);
+            tlpCentral.Dock = DockStyle.Fill;
+            tlpCentral.Location = new Point(0, 0);
+            tlpCentral.Name = "tlpCentral";
+            tlpCentral.RowCount = 3;
+            tlpCentral.RowStyles.Add(new RowStyle(SizeType.Percent, 5.32915354F));
+            tlpCentral.RowStyles.Add(new RowStyle(SizeType.Percent, 94.670845F));
+            tlpCentral.RowStyles.Add(new RowStyle(SizeType.Absolute, 72F));
+            tlpCentral.Size = new Size(1725, 711);
+            tlpCentral.TabIndex = 3;
             // 
             // panel1
             // 
-            tableLayoutPanel1.SetColumnSpan(panel1, 2);
+            tlpCentral.SetColumnSpan(panel1, 2);
             panel1.Controls.Add(btnRecalcular);
             panel1.Controls.Add(lblTotalReceber);
             panel1.Dock = DockStyle.Bottom;
@@ -90,16 +90,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1719, 67);
             panel1.TabIndex = 3;
-            // 
-            // lblTotalReceber
-            // 
-            lblTotalReceber.AutoSize = true;
-            lblTotalReceber.Font = new Font("Segoe UI", 15F);
-            lblTotalReceber.Location = new Point(1451, 39);
-            lblTotalReceber.Name = "lblTotalReceber";
-            lblTotalReceber.Size = new Size(147, 28);
-            lblTotalReceber.TabIndex = 0;
-            lblTotalReceber.Text = "TOTAL MENSAL";
             // 
             // btnRecalcular
             // 
@@ -111,18 +101,28 @@
             btnRecalcular.UseVisualStyleBackColor = true;
             btnRecalcular.Click += btnRecalcular_Click;
             // 
+            // lblTotalReceber
+            // 
+            lblTotalReceber.AutoSize = true;
+            lblTotalReceber.Font = new Font("Segoe UI", 15F);
+            lblTotalReceber.Location = new Point(1451, 39);
+            lblTotalReceber.Name = "lblTotalReceber";
+            lblTotalReceber.Size = new Size(147, 28);
+            lblTotalReceber.TabIndex = 0;
+            lblTotalReceber.Text = "TOTAL MENSAL";
+            // 
             // TelaInicial
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1725, 711);
-            Controls.Add(tableLayoutPanel1);
+            Controls.Add(tlpCentral);
             Name = "TelaInicial";
             Text = "Form1";
             Load += TelaInicial_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
-            tableLayoutPanel1.ResumeLayout(false);
+            tlpCentral.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -131,7 +131,7 @@
         #endregion
         private DataGridView dataGridView1;
         private DataGridView dataGridView2;
-        private TableLayoutPanel tableLayoutPanel1;
+        private TableLayoutPanel tlpCentral;
         private Panel panel1;
         private Label lblTotalReceber;
         private Button btnRecalcular;

@@ -7,6 +7,8 @@ using System.Configuration;
 using System.Data.SqlTypes;
 using static CQA.Program;
 using System.Text.RegularExpressions;
+using Aspose.OCR;
+using System.Windows.Forms;
 
 
 namespace CQA
@@ -27,14 +29,31 @@ namespace CQA
 
         public void TelaInicial_Load(object sender, EventArgs e)
         {
+            PictureBox gifCarregamento = new PictureBox();
+            gifCarregamento.Image = Properties.Resources.aviaoCarregando;
+
             Task.Run(async () =>
             {
 
                 try
                 {
+                    Invoke(new Action(() =>
+                    {
+                        Control ctr = tlpCentral.GetControlFromPosition(1, 1);
+                        tlpCentral.Controls.Remove(ctr);
+                        //PictureBox img = new();
+                        //img.Anchor = AnchorStyles.None;
+                        //img.SizeMode = PictureBoxSizeMode.StretchImage;
+                        //img.Image = Properties.Resources.aviaoCarregando;
+                        //img.Width = tlpCentral.GetColumnWidths()[1] / 2;
+                        //img.Height = tlpCentral.GetRowHeights()[1] / 1;
+                        //tlpCentral.Controls.Add(img, 1, 1);
+                    }));
+
                     await Program.ObterTrechos(Program.CaminhoBasePdfTrechos);
                     await Program.ExtrairPdfEscala();
-                    Invoke(new Action(() => ExibirTrechosNoDataGridView()));
+                    Invoke(new Action(() =>
+                    ExibirTrechosNoDataGridView()));
 
                 }
                 catch (Exception ex)
@@ -45,12 +64,22 @@ namespace CQA
 
 
         }
+
         private async Task ExibirTrechosNoDataGridView()
         {
+
+
+
+            Thread.Sleep(1000);
+            dataGridView2.Dock = DockStyle.Fill;
+            tlpCentral.Controls.Add(dataGridView2, 1, 1);
+
 
             // Configurar o DataGridView
             dataGridView1.AutoGenerateColumns = false;
             //dgwTabelaVendas.DataSource = Venda;
+
+
 
             dataGridView1.Columns.Add("CIA", "CIA");
             dataGridView1.Columns.Add("Origem", "Origem");
@@ -76,33 +105,25 @@ namespace CQA
             dataGridView2.Columns.Add("GanhoDiurno", "Ganho Diurno");
             dataGridView2.Columns.Add("GanhoNoturno", "Ganho Noturno");
 
-            int linha = 1;
             foreach (var item in escalaViagem)
             {
                 try
                 {
-
                     Program.trechos tr = Program.trechoViagem.FirstOrDefault(v => v.origem == item.Origem && v.destino == item.Destino);
-                    dataGridView2.Rows.Add(item.codigo, item.DataVoo.ToString("dd/MM/yyyy"),$"N", item.Origem, item.HorarioOrigem.ToString("HH:mm:ss"), item.Destino, item.HorarioDestino.ToString("HH:mm:ss"), $"{tr.km} Km", $"R$ 0,00", $"R$ 0,00", $"R$ 0,00");
-
-                    // Adicionar a nova linha ao DataGridView
-
+                    dataGridView2.Rows.Add(item.codigo, item.DataVoo.ToString("dd/MM/yyyy"), $"N", item.Origem, item.HorarioOrigem.ToString("HH:mm:ss"), item.Destino, item.HorarioDestino.ToString("HH:mm:ss"), $"{tr.km} Km", $"R$ 0,00", $"R$ 0,00", $"R$ 0,00");
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Erro\n{ex.Message}");
                 }
-
-                linha = dataGridView2.Rows.Count;
-
             }
             RecalcularDataGrid();
-
 
         }
         // Supondo que você tenha um botão em sua interface do usuário para realizar a ação
         private void RecalcularDataGrid()
         {
+
             DateTime dataMinima = new DateTime(0001, 01, 01);
             decimal valReceber = 0;
             foreach (DataGridViewRow linha in dataGridView2.Rows)
@@ -131,7 +152,7 @@ namespace CQA
 
                 // Atualiza o valor de valReceber com base nos ganhos
                 valReceber += ganhos.Item1;
-              
+
                 // Verifica se a condição é atendida para alterar as propriedades visuais da linha
                 if (dataVoo > dataMinima)
                 {
@@ -150,6 +171,8 @@ namespace CQA
         {
             RecalcularDataGrid();
         }
+
+      
     }
 
 }
